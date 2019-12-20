@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel concepts.room: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel concepts.room: ~40 rows (lebih kurang)
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
 REPLACE INTO `room` (`id`, `nomor_hak`, `nama_pemegang`, `nik`, `tanggal_lahir`, `luas`, `letak`, `nomor_ruang`, `kordinat_x`, `kordinat_y`, `kordinat_z`) VALUES
 	(2, 3, 'PT. MULTI JAYA CONCEPTS', '', '06 April 2009', '112,5', 'LANTAI DASAR', 'A.2', NULL, NULL, NULL),
@@ -69,7 +69,7 @@ REPLACE INTO `room` (`id`, `nomor_hak`, `nama_pemegang`, `nik`, `tanggal_lahir`,
 	(38, 39, 'MULYATI AGIL TUMADE', '3578261904580002', '19 April 1958', '165', 'LANTAI 3', 'D.38', NULL, NULL, NULL),
 	(39, 40, 'PT. MULTI JAYA CONCEPTS', '', '06 April 2009', '112,5', 'LANTAI 3', 'D.39', NULL, NULL, NULL),
 	(40, 41, 'MASDARI', '3578261312620001', '31 Desember 1962', '105', 'LANTAI 3', 'D.40', NULL, NULL, NULL),
-	(41, 2, 'PT. MULTI JAYA CONCEPTS', NULL, '06-Apr-09\r\n', '150', 'LANTAI DASAR', 'A.2', NULL, NULL, NULL);
+	(41, 2, 'PT. MULTI JAYA CONCEPTS', NULL, '06 April 2009', '150', 'LANTAI DASAR', 'A.1', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
