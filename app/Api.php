@@ -13,7 +13,6 @@ class Api {
     public function index()
     {
         $result = [];
-
         $sql    ="select * from room ORDER BY nomor_hak ASC LIMIT 5";
         $query  =$this->db->query($sql);
         

@@ -49,12 +49,11 @@ $(document).ready(function(){
             $('#list-room').append(list);
         })
     }
-
     function showData()
     {
         $.get('./app/Api.php', function(data){
             data = JSON.parse(data)
-
+            
             listRoom(data);
             show3D(data);
         });
