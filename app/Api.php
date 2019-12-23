@@ -13,7 +13,7 @@ class Api {
     public function index()
     {
         $result = [];
-        $sql    ="select * from room ORDER BY nomor_hak ASC LIMIT 5";
+        $sql    ="select * from room ORDER BY nomor_hak ASC LIMIT 2";
         $query  =$this->db->query($sql);
         
         while($data = $query->fetch(PDO::FETCH_OBJ)){

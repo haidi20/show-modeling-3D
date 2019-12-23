@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
     var urlid = 'c2b5e20515234e61b280cddfe6fd20a3';
@@ -30,6 +31,10 @@ $(document).ready(function(){
                             content: content
                         });                       
                    }
+                });
+                $(document).on('change', '#list-room', function(){
+                    let value = this.value;
+                    api.gotoAnnotation(value, { preventCameraAnimation: true, preventCameraMove: false });
                 });
             });
         };
