@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
-    var urlid = 'c2b5e20515234e61b280cddfe6fd20a3';
+    var urlid = '030da027a3dc4ae181c3dd214b92c771';
 
     function show3D(data) {
         // initialize
