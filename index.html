@@ -47,6 +47,8 @@
     <div class="container">
 
       <div class="starter-template">
+        <!-- <div id="demo">coba</div>
+        <button onclick="getLocation()">klik</button> -->
         <h2 >Show Modeling 3D</h2>
         <iframe 
           
@@ -63,7 +65,8 @@
         <select id="list-room">
           
         </select>
-        <button id="klik">klik</button>
+        
+        
       </div>
 
     </div><!-- /.container -->
@@ -81,5 +84,20 @@
 
     <!-- custom javascript -->
     <script src="assets/js/app.js"></script>
+    <script>
+      var x = document.getElementById("demo");
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+      
+      function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+      }
+      </script> 
     </body>
 </html>
