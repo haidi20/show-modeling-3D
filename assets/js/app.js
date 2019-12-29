@@ -49,10 +49,12 @@ $(document).ready(function(){
 
     function listRoom(data)
     {
+        let list = '';
+        list += '<option value=""> Pilih Ruangan </option>';
         $.each(data, function(index, item){
-            let list = '<option value="'+index+'">'+item.nomor_ruang+'</option>';
-            $('#list-room').append(list);
+             list += '<option value="'+index+'"> Ruangan '+item.nomor_ruang+'</option>';
         })
+        $('#list-room').append(list);
     }
     function showData()
     {
