@@ -1,8 +1,7 @@
 $(document).ready(function(){
-
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
-    var urlid = '030da027a3dc4ae181c3dd214b92c771';
+    var urlid = 'c33c9ad09a1f4a8095163da7c01222e6';
 
     function show3D(data) {
         // initialize
@@ -10,16 +9,13 @@ $(document).ready(function(){
         if (!iframe) {
             console.log('no target');
         }
-
         if (!window.Sketchfab) {
             console.log('no Sketchfab library');
         }
         var client = new window.Sketchfab(version, iframe);
-
         var error = function() {
             console.error('Sketchfab API error');
         };
-
         var success = function(api) {
             api.start(function() {
                 api.addEventListener('viewerready', function() {
@@ -38,7 +34,6 @@ $(document).ready(function(){
                 });
             });
         };
-
         client.init(urlid, {
             success: success,
             error: error,
@@ -46,7 +41,6 @@ $(document).ready(function(){
             preload: 1
         });
     }
-
     function listRoom(data)
     {
         let list = '';

@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 class Api {
     public function __construct()
     {
@@ -9,12 +7,11 @@ class Api {
 
         $this->db = $db;
     }
-
     public function index()
     {
         $result = [];
-        $sql    ="select * from room ORDER BY nomor_hak ASC LIMIT 2";
-        $query  =$this->db->query($sql);
+        $sql    = "select * from room ORDER BY nomor_hak ASC";
+        $query  = $this->db->query($sql);
         
         while($data = $query->fetch(PDO::FETCH_OBJ)){
             $result[] = $data;
@@ -22,11 +19,7 @@ class Api {
 
         return $result;
     }
-
 }
-
 $api = new Api;
-
 $index = $api->index();
-
 echo json_encode($index);
