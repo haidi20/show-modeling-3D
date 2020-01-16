@@ -52,7 +52,7 @@ $(document).ready(function(){
         let list = '';
         list += '<option value=""> Pilih Ruangan </option>';
         $.each(data, function(index, item){
-             list += '<option value="'+index+'"> Ruangan '+item.nomor_ruang+'</option>';
+             list += '<option value="'+index+'" style="text-align:center"> Ruangan '+item.nomor_ruang+'</option>';
         })
         $('#list-room').append(list);
     }
