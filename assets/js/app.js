@@ -19,7 +19,7 @@ $(document).ready(function(){
         var success = function(api) {
             api.start(function() {
                 api.addEventListener('viewerready', function() {
-                   for (let i = 0; i < 2; i++) {
+                   for (let i = 0; i < data.length; i++) {
                         let content = 'letak = '+data[i].letak+'<br> keren';
 
                         api.updateAnnotation(i, {
