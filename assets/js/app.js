@@ -1,9 +1,10 @@
 $(document).ready(function(){
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
-    var urlid = 'c33c9ad09a1f4a8095163da7c01222e6';
+    var urlid = '1b7dbb4270de461ca3db0a336e8e9cf7';
 
     function show3D(data) {
+        // console.log(data);
         // initialize
         var iframe = document.getElementById('api-frame');
         if (!iframe) {
@@ -19,8 +20,13 @@ $(document).ready(function(){
         var success = function(api) {
             api.start(function() {
                 api.addEventListener('viewerready', function() {
-                   for (let i = 0; i < 2; i++) {
-                        let content = 'letak = '+data[i].letak+'<br> keren';
+                   for (let i = 0; i < 40; i++) {
+                        // ini untuk menampilkan di deskripsi
+                        let content = 'Letak = '+data[i].letak+'<br>';
+                        content += 'Nomor Hak = '+data[i].nomor_hak+'<br>';
+                        content += 'Tanggal Lahir= '+data[i].tanggal_lahir+'<br>';
+                        content += 'Luas = '+data[i].luas+'<br>';
+                        content += 'Nomor Ruang = '+data[i].nomor_ruang+'<br>';
 
                         api.updateAnnotation(i, {
                             title: data[i].nama_pemegang,
