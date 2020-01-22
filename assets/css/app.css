@@ -5,12 +5,18 @@
     color:white;
     height: 70px;
     padding-top: 10px;
+    margin-bottom: 20px;
 }
-#list-room{
+#list-room, #list-floor{
     width: 100%;
     height: 50px;
     text-align: center;
+    /*text-align-last:center;*/
     font-size: 30px;
     -webkit-appearance: none;
     -moz-appearance: none;
+}
+#list-room > option{
+    text-align: center;
+    /*text-align-last:center;*/
 }

@@ -1,9 +1,11 @@
 $(document).ready(function(){
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
-    var urlid = 'c33c9ad09a1f4a8095163da7c01222e6';
+    // var urlid = '1b7dbb4270de461ca3db0a336e8e9cf7';
+    var urlid = '';
 
     function show3D(data) {
+        // console.log(data);
         // initialize
         var iframe = document.getElementById('api-frame');
         if (!iframe) {
@@ -19,8 +21,13 @@ $(document).ready(function(){
         var success = function(api) {
             api.start(function() {
                 api.addEventListener('viewerready', function() {
-                   for (let i = 0; i < data.length; i++) {
-                        let content = 'letak = '+data[i].letak+'<br> keren';
+                   for (let i = 0; i < 40; i++) {
+                        // ini untuk menampilkan di deskripsi
+                        let content = 'Letak = '+data[i].letak+'<br>';
+                        content += 'Nomor Hak = '+data[i].nomor_hak+'<br>';
+                        content += 'Tanggal Lahir= '+data[i].tanggal_lahir+'<br>';
+                        content += 'Luas = '+data[i].luas+'<br>';
+                        content += 'Nomor Ruang = '+data[i].nomor_ruang+'<br>';
 
                         api.updateAnnotation(i, {
                             title: data[i].nama_pemegang,
@@ -46,19 +53,44 @@ $(document).ready(function(){
         let list = '';
         list += '<option value=""> Pilih Ruangan </option>';
         $.each(data, function(index, item){
-             list += '<option value="'+index+'"> Ruangan '+item.nomor_ruang+'</option>';
+             list += '<option value="'+index+'" style="text-align:center"> Ruangan '+item.nomor_ruang+'</option>';
         })
-        $('#list-room').append(list);
+        $('#list-room')
+        .find('option')
+        .remove()
+        .end()
+        .append(list)
     }
-    function showData()
+    function listFloor(data)
     {
-        $.get('./app/Api.php', function(data){
-            data = JSON.parse(data)
+        let list = '';
+        $.each(data, function(index, item){
+             list += '<option value="'+item+'" style="text-align:center">'+item+'</option>';
+        })
+
+        $('#list-floor')
+        .append(list)
+    }
+    function showData(params = null)
+    {
+        $.get('./app/Api.php?floor='+params, function(data){
+            var data = JSON.parse(data)
+            var rooms = data.data
+            var getAllFloor = data.getAllFloor
+
+            // console.log(data)
             
-            listRoom(data);
-            show3D(data);
+            listRoom(rooms);
+            show3D(rooms);
+
+            if(params == null){
+                listFloor(getAllFloor);
+            }
         });
     }
+    $(document).on('change', '#list-floor', function() {
+        showData(this.value)
+    });
 
     showData();
 });
