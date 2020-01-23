@@ -24,15 +24,16 @@ class Api {
     public function getAllFloor()
     {
         $result = [
-            "LANTAI DASAR", 
-            "LANTAI 1",
-            "LANTAI 2",
-            "LANTAI 3",
+            ["position"=>"LANTAI DASAR", "urlid" => "5a7d2365ba5643d8af283eb9af424c90"],
+            ["position"=>"LANTAI 1", "urlid" => "c33c9ad09a1f4a8095163da7c01222e6"],
+            ["position"=>"LANTAI 2", "urlid" => "54ebec3b832d4b18b51c47cfb05377b1"],
+            ["position"=>"LANTAI 3", "urlid" => "e4c145eb5e1e4cdbaf58234e31916d44"],
         ];
 
         return $result;
     }
 }
+
 $api = new Api;
 
 $index          = $api->index();

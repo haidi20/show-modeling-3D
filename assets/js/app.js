@@ -1,10 +1,8 @@
 $(document).ready(function(){
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
-    // var urlid = '1b7dbb4270de461ca3db0a336e8e9cf7';
-    var urlid = '';
 
-    function show3D(data) {
+    function show3D(rooms, floor) {
         // console.log(data);
         // initialize
         var iframe = document.getElementById('api-frame');
@@ -23,14 +21,14 @@ $(document).ready(function(){
                 api.addEventListener('viewerready', function() {
                    for (let i = 0; i < 40; i++) {
                         // ini untuk menampilkan di deskripsi
-                        let content = 'Letak = '+data[i].letak+'<br>';
-                        content += 'Nomor Hak = '+data[i].nomor_hak+'<br>';
-                        content += 'Tanggal Lahir= '+data[i].tanggal_lahir+'<br>';
-                        content += 'Luas = '+data[i].luas+'<br>';
-                        content += 'Nomor Ruang = '+data[i].nomor_ruang+'<br>';
+                        let content = 'Letak = '+rooms[i].letak+'<br>';
+                        content += 'Nomor Hak = '+rooms[i].nomor_hak+'<br>';
+                        content += 'Tanggal Lahir= '+rooms[i].tanggal_lahir+'<br>';
+                        content += 'Luas = '+rooms[i].luas+'<br>';
+                        content += 'Nomor Ruang = '+rooms[i].nomor_ruang+'<br>';
 
                         api.updateAnnotation(i, {
-                            title: data[i].nama_pemegang,
+                            title: rooms[i].nama_pemegang,
                             content: content
                         });                       
                    }
@@ -41,12 +39,24 @@ $(document).ready(function(){
                 });
             });
         };
+
+        let urlid = selectFloor(floor)
         client.init(urlid, {
             success: success,
             error: error,
             autostart: 1,
             preload: 1
         });
+    }
+    function selectFloor(floor)
+    {
+        var urlid = [];
+        urlid ["LANTAI DASAR"] = "5a7d2365ba5643d8af283eb9af424c90";
+        urlid ["LANTAI 1"] = "c33c9ad09a1f4a8095163da7c01222e6";
+        urlid ["LANTAI 2"] = "54ebec3b832d4b18b51c47cfb05377b1";
+        urlid ["LANTAI 3"] = "e4c145eb5e1e4cdbaf58234e31916d44";
+
+        return urlid[floor];
     }
     function listRoom(data)
     {
@@ -65,27 +75,23 @@ $(document).ready(function(){
     {
         let list = '';
         $.each(data, function(index, item){
-             list += '<option value="'+item+'" style="text-align:center">'+item+'</option>';
+             list += '<option value="'+item.position+'" style="text-align:center">'+item.position+'</option>';
         })
 
         $('#list-floor')
         .append(list)
     }
-    function showData(params = null)
+    function showData(floor = "LANTAI DASAR")
     {
-        $.get('./app/Api.php?floor='+params, function(data){
+        $.get('./app/Api.php?floor='+floor, function(data){
             var data = JSON.parse(data)
             var rooms = data.data
             var getAllFloor = data.getAllFloor
-
-            // console.log(data)
             
             listRoom(rooms);
-            show3D(rooms);
-
-            if(params == null){
-                listFloor(getAllFloor);
-            }
+            listFloor(getAllFloor);
+            show3D(rooms, floor);
+                
         });
     }
     $(document).on('change', '#list-floor', function() {
