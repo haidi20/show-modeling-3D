@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     function showMap()
     {
-        var latlong = ["512363.418", "9944335.721"]
+        var latlong = ["-0.5034493967670656", "117.11121133646971"]
         // var latlong = ["-0.501054", "117.143388"]
         var map = L.map('map').setView(
             latlong, 
@@ -16,7 +16,7 @@ $(document).ready(function(){
         
 
         L.marker(latlong).addTo(map)
-            .bindPopup('Dinas Pariwisata Kalimantan Timur')
+            .bindPopup('Apartemen The Concepts')
             .openPopup()
             .on('click', onClick);
         
@@ -68,7 +68,8 @@ $(document).ready(function(){
             });
         };
 
-        let urlid = selectFloor(floor)
+        // let urlid = selectFloor(floor)
+        let urlid = '';
         client.init(urlid, {
             success: success,
             error: error,
