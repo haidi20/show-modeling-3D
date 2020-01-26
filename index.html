@@ -9,23 +9,31 @@
     <title>Concepts</title>
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
 	  <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body>
     <div class="heading">
       App Concepts
     </div>
-    <div class="col-md-9" >
-      <iframe 
-          src="" width="100%" 
-          id="api-frame" height="507px" 
-          allowvr allowfullscreen 
-          mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; vr" 
-        ></iframe>
+    <div id="show_map">
+      <div id="map"></div>
     </div>
-    <div class="col-md-3">
-      <select id="list-floor" class="form-control"></select> <br>
-      <select id="list-room" class="form-control"></select>
+    <div id="show_3D" style="display:none">
+      <div class="col-md-9" >
+        <iframe 
+            src="" width="100%" 
+            id="api-frame" height="507px" 
+            allowvr allowfullscreen 
+            mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; vr" 
+          ></iframe>
+      </div>
+      <div class="col-md-3">
+        <select id="list-floor" class="form-control"></select> <br>
+        <select id="list-room" class="form-control"></select>
+      </div>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -34,6 +42,10 @@
     <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.5.2.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Leaflet 1.5.1 -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
     <!-- custom javascript -->
     <script src="assets/js/app.js"></script>
     </body>

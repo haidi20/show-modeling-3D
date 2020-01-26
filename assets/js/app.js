@@ -2,7 +2,35 @@ $(document).ready(function(){
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
 
-    function show3D(rooms, floor) {
+    function showMap()
+    {
+        var latlong = ["512363.418", "9944335.721"]
+        // var latlong = ["-0.501054", "117.143388"]
+        var map = L.map('map').setView(
+            latlong, 
+        15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(map);
+        
+
+        L.marker(latlong).addTo(map)
+            .bindPopup('Dinas Pariwisata Kalimantan Timur')
+            .openPopup()
+            .on('click', onClick);
+        
+        // map.scrollWheelZoom.disable();
+    }
+
+    function onClick()
+    {
+        $('#show_map').hide();
+        $('#show_3D').show();
+    }
+
+    function show3D(rooms, floor) 
+    {
         // console.log(data);
         // initialize
         var iframe = document.getElementById('api-frame');
@@ -40,8 +68,7 @@ $(document).ready(function(){
             });
         };
 
-        // let urlid = selectFloor(floor)
-        let urlid = '';
+        let urlid = selectFloor(floor)
         client.init(urlid, {
             success: success,
             error: error,
@@ -105,5 +132,6 @@ $(document).ready(function(){
         showData(this.value, 0)
     });
 
+    showMap();
     showData();
 });
