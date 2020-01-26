@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // Sketchfab Viewer API: Localization;
     var version = '1.5.2';
+    var setFirstTime = 1
 
     function show3D(rooms, floor) {
         // console.log(data);
@@ -30,13 +31,28 @@ $(document).ready(function(){
                         api.updateAnnotation(i, {
                             title: rooms[i].nama_pemegang,
                             content: content
-                        });                       
+                        });                    
                    }
                 });
+
                 $(document).on('change', '#list-room', function(){
                     let value = this.value;
                     api.gotoAnnotation(value, { preventCameraAnimation: true, preventCameraMove: false });
+                    insertDetailRoom(rooms, value);
                 });
+
+                function insertDetailRoom(rooms, value)
+                {
+                    $('.rights_number').html(rooms[value].nomor_hak);
+                    $('.name_user').html(rooms[value].nama_pemegang);
+                    $('.nik').html(rooms[value].nik);
+                    $('.date_born').html(rooms[value].tanggal_lahir);
+                    $('.large').html(rooms[value].luas);
+                    $('.position').html(rooms[value].letak);
+                    $('.number_room').html(rooms[value].nomor_ruang);
+                    $('.coordinate_x').html(rooms[value].kordinat_x);
+                    $('.coordinate_y').html(rooms[value].kordinat_y);
+                }
             });
         };
 
@@ -51,10 +67,10 @@ $(document).ready(function(){
     function selectFloor(floor)
     {
         var urlid = [];
-        urlid ["LANTAI DASAR"] = "5a7d2365ba5643d8af283eb9af424c90";
-        urlid ["LANTAI 1"] = "c33c9ad09a1f4a8095163da7c01222e6";
-        urlid ["LANTAI 2"] = "54ebec3b832d4b18b51c47cfb05377b1";
-        urlid ["LANTAI 3"] = "e4c145eb5e1e4cdbaf58234e31916d44";
+        urlid ["LANTAI 1"] = "5a7d2365ba5643d8af283eb9af424c90";
+        urlid ["LANTAI 2"] = "c33c9ad09a1f4a8095163da7c01222e6";
+        urlid ["LANTAI 3"] = "54ebec3b832d4b18b51c47cfb05377b1";
+        urlid ["LANTAI 4"] = "e4c145eb5e1e4cdbaf58234e31916d44";
 
         return urlid[floor];
     }
@@ -81,7 +97,7 @@ $(document).ready(function(){
         $('#list-floor')
         .append(list)
     }
-    function showData(floor = "LANTAI DASAR")
+    function showData(floor = "LANTAI 1")
     {
         $.get('./app/Api.php?floor='+floor, function(data){
             var data = JSON.parse(data)
@@ -89,12 +105,16 @@ $(document).ready(function(){
             var getAllFloor = data.getAllFloor
             
             listRoom(rooms);
-            listFloor(getAllFloor);
             show3D(rooms, floor);
+
+            if(setFirstTime == 1){
+                listFloor(getAllFloor);
+            }
                 
         });
     }
     $(document).on('change', '#list-floor', function() {
+        setFirstTime = 0
         showData(this.value)
     });
 
