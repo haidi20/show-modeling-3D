@@ -40,7 +40,8 @@ $(document).ready(function(){
             });
         };
 
-        let urlid = selectFloor(floor)
+        // let urlid = selectFloor(floor)
+        let urlid = '';
         client.init(urlid, {
             success: success,
             error: error,
@@ -81,21 +82,27 @@ $(document).ready(function(){
         $('#list-floor')
         .append(list)
     }
-    function showData(floor = "LANTAI DASAR")
+    function showData(floor = "LANTAI 1", step = 1)
     {
+        var firstRun = step ;
         $.get('./app/Api.php?floor='+floor, function(data){
             var data = JSON.parse(data)
             var rooms = data.data
             var getAllFloor = data.getAllFloor
             
             listRoom(rooms);
-            listFloor(getAllFloor);
             show3D(rooms, floor);
+            console.log(firstRun);
+
+            if(firstRun == 1){
+                console.log(firstRun)
+                listFloor(getAllFloor);
+            }
                 
         });
     }
     $(document).on('change', '#list-floor', function() {
-        showData(this.value)
+        showData(this.value, 0)
     });
 
     showData();
