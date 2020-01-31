@@ -10,7 +10,7 @@ class Api {
     public function index()
     {
         $result = [];
-        $floor = isset($_GET['floor']) != "null" ? $_GET['floor'] : 'LANTAI 1';
+        $floor = $_GET['floor'] != "null" ? $_GET['floor'] : 'LANTAI 1';
         $conditionFloor = "WHERE letak='".$floor."'";
         $sql    = "select * from room ".$conditionFloor." ORDER BY nomor_hak ASC ";
         $query  = $this->db->query($sql);
